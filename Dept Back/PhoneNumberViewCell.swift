@@ -7,31 +7,38 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
-class PhoneNumberViewCell: UITableViewCell {
+class PhoneNumberViewCell: UITableViewCell, UITextViewDelegate
+{
+    @IBOutlet weak var textFieldPhone: UITextField!
+    var phoneKit = PhoneNumberKit()
     
-    @IBOutlet var textFieldPhone : UITextField!
-
+    // delegate for interact with "done" button
+    var delegateDone : TextFieldsDelegate?
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
         
-        
+        textFieldPhone.delegate = self as? UITextFieldDelegate
     }
 
+    @IBAction func editingChanged(_ sender: UITextField)
+    {
+        sender.text = PartialFormatter().formatPartial(sender.text!)
+        delegateDone?.buttonEnabledChanged()
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
     }
-
-}
-
-extension PhoneNumberViewCell : UITextFieldDelegate
-{
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textFieldPhone.resignFirstResponder()
         return false
     }
-    
 }
+

@@ -14,8 +14,9 @@ class DebtInfoViewController: UIViewController {
     @IBOutlet weak var labelAmount: UILabel!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var imagePhoto: UIImageView!
-    @IBOutlet weak var comment: UITextView!
     @IBOutlet weak var buttonReturned: UIButton!
+    @IBOutlet weak var labelPhoneNumber: UILabel!
+    @IBOutlet weak var textViewNotes: UITextView!
     
     var name : String? = nil
     var photo : UIImage? = nil
@@ -25,13 +26,66 @@ class DebtInfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
-        labelName.text = name!
-        labelAmount.text = amount!
-        imagePhoto.image = photo!
+        if let name = debtManagedObject!.value(forKey: "name")
+        {
+            labelName.text = name as? String
+        }
         
-        imagePhoto.contentMode = .scaleAspectFill
+        if let sername = debtManagedObject!.value(forKey: "sername")
+        {
+            labelName.text! += " \(sername as! String)"
+        }
         
-        setCircleView(image: imagePhoto)
+        if let toMe = debtManagedObject!.value(forKey: "toMe")
+        {
+            // change debt amount color
+            if (!(toMe as! Bool))
+            {
+                labelAmount.textColor = UIColor.red
+                labelAmount.text! = "-"
+            }
+            else
+            {
+                labelAmount.text! = ""
+            }
+        }
+        
+        if let amount = debtManagedObject!.value(forKey: "amount")
+        {
+            labelAmount.text! += amount as! String
+        }
+        
+        if let photo = debtManagedObject!.value(forKey: "photo")
+        {
+            let image = UIImage(data: photo as! Data, scale: 1.0)
+            imagePhoto.image = image
+            
+            imagePhoto.contentMode = .scaleAspectFill
+            
+            setCircleView(image: imagePhoto)
+        }
+        else
+        {
+            imagePhoto.image = #imageLiteral(resourceName: "shapeOfHumanuman128.png")
+            
+            imagePhoto.contentMode = .scaleAspectFill
+            
+            setCircleView(image: imagePhoto)
+        }
+        
+        // set notes and phoneNumber
+        if let notes = debtManagedObject?.value(forKey: "notes")
+        {
+            textViewNotes.text = notes as! String
+        }
+        
+        if let number = debtManagedObject?.value(forKey: "phoneNumber")
+        {
+            labelPhoneNumber.text = number as? String
+        }
+        
+        // delegate
+        
     }
     
     func setCircleView(image: UIImageView)
@@ -67,6 +121,13 @@ class DebtInfoViewController: UIViewController {
             print(indexOfSelectedRecord)
             print(controller.deleteThisVar)
             //controller.debts.remove(at: indexOfSelectedRecord)
+        }
+        if let navigationVC = segue.destination as? UINavigationController
+        {
+            let controller = navigationVC.viewControllers.first as! NewDebtViewController
+            controller.navigationItem.title = ""
+            controller.isNewDebt = false
+            controller.managedDebt = debtManagedObject
         }
     }
     

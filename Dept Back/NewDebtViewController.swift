@@ -9,6 +9,19 @@
 import UIKit
 import CoreData
 
+protocol TextFieldsDelegate
+{
+    var defaultName     : String {get set}
+    var defaultSername  : String {get set}
+    var defaultAmount   : String {get set}
+    var defaultNumber   : String {get set}
+    var defaultNote     : String {get set}
+    var defaultWhomIndex: Int    {get set}
+    
+    
+    func buttonEnabledChanged()
+}
+
 extension UITableViewController
 {
     func hideKeyboardWhenTappedAround()
@@ -24,50 +37,182 @@ extension UITableViewController
     }
 }
 
-class NewDebtViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate
+class NewDebtViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, TextFieldsDelegate
 {
+    // MARK: - properties
+    
     @IBOutlet var newDebtView: UITableView!
     @IBOutlet weak var buttonDone: UIBarButtonItem!
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
+    // define variables for interact with coreData
+    var appDelegate : AppDelegate
+    var context : NSManagedObjectContext
+    var managedDebt : NSManagedObject?
+    var isNewDebt = true
     
+    // for image picker
     var imageSelected = false
     let imagePicker = UIImagePickerController()
     
-    //define cell for control main info
+    // define cells
     var mainInfoCell : MainInfoViewCell? = nil
+    var phoneNumberCell : PhoneNumberViewCell? = nil
+    var notesCell : NoteViewCell? = nil
     
-    var debtsListView : UITableViewController? = nil
+    var debtsListView : UITableViewController? = nil    
+    
+    
+    // meet the condition of delegate protocol
+    var defaultName: String = ""
+    var defaultNote: String = ""
+    var defaultAmount: String = ""
+    var defaultNumber: String = ""
+    var defaultSername: String = ""
+    var defaultWhomIndex: Int = 0
+    
+    
+    // MARK: - methods
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        //fatalError("init(coder:) has not been implemented")
+        
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
+        context = appDelegate.persistentContainer.viewContext
+        
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
         newDebtView.delegate = self
-        
-        newDebtView.rowHeight = UITableViewAutomaticDimension
-        newDebtView.estimatedRowHeight = 100
-        
-        newDebtView.tableFooterView = UIView()
+        imagePicker.delegate = self
         
         newDebtView.alwaysBounceVertical = false
         
         self.hideKeyboardWhenTappedAround()
         
-        imagePicker.delegate = self
+        // hack for deleting extra separators
+        newDebtView.tableFooterView = UIView()
         
-        //define cell
+        //define cells
         mainInfoCell = newDebtView.dequeueReusableCell(withIdentifier: "mainInfoCell")! as? MainInfoViewCell
         mainInfoCell!.buttonDone = buttonDone
+        phoneNumberCell = newDebtView.dequeueReusableCell(withIdentifier: "phoneNumberCell")! as? PhoneNumberViewCell
+        notesCell = newDebtView.dequeueReusableCell(withIdentifier: "noteCell") as? NoteViewCell
+        
+        //link delegate for this cells
+        mainInfoCell?.delegateDone = self
+        phoneNumberCell?.delegateDone = self
+        notesCell?.delegateDone = self
         
         // set tap recognizer
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         mainInfoCell!.imagePhoto.isUserInteractionEnabled = true
         mainInfoCell!.imagePhoto.addGestureRecognizer(tapGestureRecognizer)
+        
+        // for cells autosize
+        tableView.rowHeight = UITableViewAutomaticDimension;
+        tableView.estimatedRowHeight = 70;
+        
+        // define managedObject
+        if (managedDebt == nil) // user create new debt
+        {
+            managedDebt = NSEntityDescription.insertNewObject(forEntityName: "Debt", into: context)
+        }
+        else                    // user want to edit exist debt
+        {
+            if let name = managedDebt!.value(forKey: "name")
+            {
+                mainInfoCell?.textName!.text = name as? String
+                defaultName = name as! String
+            }
+            
+            if let sername = managedDebt!.value(forKey: "sername")
+            {
+                mainInfoCell?.textSername!.text = sername as? String
+                defaultSername = sername as! String
+            }
+            
+            if let toMe = managedDebt!.value(forKey: "toMe") as? Bool
+            {
+                // change debt amount color
+                if (!toMe)
+                {
+                    mainInfoCell?.segmentedControlWhom.selectedSegmentIndex = 1
+                    defaultWhomIndex = 1
+                }
+            }
+            
+            if let amount = managedDebt!.value(forKey: "amount")
+            {
+                mainInfoCell?.textDebtsAmount.text = amount as? String
+                defaultAmount = amount as! String
+            }
+            
+            if let photo = managedDebt!.value(forKey: "photo")
+            {
+                let image = UIImage(data: photo as! Data, scale: 1.0)
+                mainInfoCell?.imagePhoto.image = image
+                
+                mainInfoCell?.imagePhoto.contentMode = .scaleAspectFill
+                
+                setCircleView(image: mainInfoCell!.imagePhoto)
+            }
+            else
+            {
+                mainInfoCell?.imagePhoto.image = #imageLiteral(resourceName: "shapeOfHumanuman128.png")
+                
+                mainInfoCell?.imagePhoto.contentMode = .scaleAspectFill
+                
+                setCircleView(image: mainInfoCell!.imagePhoto)
+            }
+            
+            // set notes and phoneNumber
+            if let notes = managedDebt!.value(forKey: "notes")
+            {
+                notesCell?.textViewNote.text = notes as! String
+                notesCell?.labelPlaceholder.isHidden = true
+                defaultNote = notes as! String
+            }
+            
+            if let number = managedDebt!.value(forKey: "phoneNumber")
+            {
+                phoneNumberCell?.textFieldPhone.text = number as? String
+                defaultNumber = number as! String
+            }
+        }
        }
     
     @IBAction func clickCancel(_ sender: Any)
     {
+        if (isNewDebt)
+        {
+            context.delete(managedDebt!)
+        }
         dismiss(animated: true, completion: nil)
+        
+    }
+    
+    // meet the protocols condition
+    func buttonEnabledChanged()
+    {
+        if  (mainInfoCell?.textName.text != defaultName)            ||
+            (mainInfoCell?.textSername.text != defaultSername)      ||
+            (mainInfoCell?.textDebtsAmount.text != defaultAmount)   ||
+            (phoneNumberCell?.textFieldPhone.text != defaultNumber) ||
+            (notesCell?.textViewNote.text != defaultNote)           ||
+            (mainInfoCell?.segmentedControlWhom.selectedSegmentIndex != defaultWhomIndex)
+        {
+            buttonDone.isEnabled = true
+        }
+        else
+        {
+            buttonDone.isEnabled = false
+        }
     }
 
 
@@ -88,9 +233,9 @@ class NewDebtViewController: UITableViewController,UIImagePickerControllerDelega
         switch (indexPath.row)
         {
         case 0: return mainInfoCell!
-        case 1: return newDebtView.dequeueReusableCell(withIdentifier: "phoneNumberCell")! as! PhoneNumberViewCell
-        case 2: return  newDebtView.dequeueReusableCell(withIdentifier: "noteCell")! as! NoteViewCell
-        default: return  newDebtView.dequeueReusableCell(withIdentifier: "phoneNumberCell")! as! PhoneNumberViewCell
+        case 1: return phoneNumberCell!
+        case 2: return notesCell!
+        default: return notesCell!
         }
     }
     
@@ -118,6 +263,7 @@ class NewDebtViewController: UITableViewController,UIImagePickerControllerDelega
         imageSelected = true
     }
     
+    // "cancel" tapped
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
         dismiss(animated: true, completion: nil)
@@ -133,30 +279,25 @@ class NewDebtViewController: UITableViewController,UIImagePickerControllerDelega
     
     @IBAction func buttonDoneClick(_ sender: Any)
     {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let newDebt = NSEntityDescription.insertNewObject(forEntityName: "Debt", into: context)
-        
-        
-        newDebt.setValue(mainInfoCell!.textName.text, forKey: "name")
-        newDebt.setValue(mainInfoCell!.textSername.text, forKey: "sername")
-        newDebt.setValue(mainInfoCell!.textDebtsAmount.text, forKey: "amount")
+        managedDebt!.setValue(mainInfoCell!.textName.text, forKey: "name")
+        managedDebt!.setValue(mainInfoCell!.textSername.text, forKey: "sername")
+        managedDebt!.setValue(mainInfoCell!.textDebtsAmount.text, forKey: "amount")
+        managedDebt!.setValue(phoneNumberCell!.textFieldPhone.text, forKey: "phoneNumber")
+        managedDebt!.setValue(notesCell!.textViewNote.text, forKey: "notes")
         
         if (imageSelected)
         {
             let photo = UIImageJPEGRepresentation(mainInfoCell!.imagePhoto.image!, 0)
-            newDebt.setValue(photo, forKey: "photo")
+            managedDebt!.setValue(photo, forKey: "photo")
         }
         
         if (mainInfoCell!.segmentedControlWhom.selectedSegmentIndex == 0)
         {
-            newDebt.setValue(true, forKey: "toMe")
+            managedDebt!.setValue(true, forKey: "toMe")
         }
         else
         {
-            newDebt.setValue(false, forKey: "toMe")
+            managedDebt!.setValue(false, forKey: "toMe")
         }
         
         do
@@ -170,11 +311,7 @@ class NewDebtViewController: UITableViewController,UIImagePickerControllerDelega
         }
         
         dismiss(animated: true)
-        {
-            
-        }
     }
-
 }
 
 

@@ -8,26 +8,61 @@
 
 import UIKit
 
-class NoteViewCell: UITableViewCell
+class NoteViewCell: UITableViewCell, UITextViewDelegate
 {
-    @IBOutlet var textViewNotes : UITextView!
     
+    @IBOutlet weak var textViewNote: UITextView!
+    @IBOutlet weak var labelPlaceholder: UILabel!
+    
+    var tableView: UITableView? = nil
+    
+    //delegate for change "done" button enabled
+    var delegateDone : TextFieldsDelegate?
     
     override func awakeFromNib()
     {
         super.awakeFromNib()
-
-        let amountOfLinesToBeShown : CGFloat = 10
-        let maxHeight : CGFloat = amountOfLinesToBeShown * textViewNotes.font!.lineHeight
-        let size = CGSize(width: textViewNotes.frame.width, height: maxHeight)
-        textViewNotes.sizeThatFits(size)
+        textViewNote.delegate = self
+        
+        
+        let textViewFrame = CGRect(x: 3, y: 35, width: 369, height: textViewNote.contentSize.height + 10)
+        let cellFrame = CGRect(x: 0, y: self.frame.minY, width: self.frame.width, height: textViewFrame.minY + textViewFrame.height + 40.5)
+        
+        
+        textViewNote.frame = textViewFrame
+        self.frame = cellFrame
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
-
-        
     }
-
+    
+    func textViewDidChange(_ textView: UITextView)
+    {
+        if textView.text != ""
+        {
+            labelPlaceholder.isHidden = true
+        }
+        else
+        {
+            labelPlaceholder.isHidden = false
+        }
+        
+        let tableView = superview?.superview as! UITableView
+        
+        UIView.setAnimationsEnabled(false)
+        tableView.beginUpdates()
+        textViewNote.isScrollEnabled = false
+        tableView.endUpdates()
+        UIView.setAnimationsEnabled(true)
+        
+        delegateDone?.buttonEnabledChanged()
+    }
 }
+
+
+
+
+

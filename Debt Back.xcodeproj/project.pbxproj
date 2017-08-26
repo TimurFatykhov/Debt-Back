@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1663353F1F34B6140098A587 /* shapeOfHumanuman128.png in Resources */ = {isa = PBXBuildFile; fileRef = 1663353E1F34B6140098A587 /* shapeOfHumanuman128.png */; };
-		166335411F34B62B0098A587 /* addPhoto64.png in Resources */ = {isa = PBXBuildFile; fileRef = 166335401F34B62B0098A587 /* addPhoto64.png */; };
+		165EDA941F404D3800261209 /* addPhoto64.png in Resources */ = {isa = PBXBuildFile; fileRef = 165EDA931F404D3800261209 /* addPhoto64.png */; };
+		165EDA961F404D4100261209 /* shapeOfHumanuman128.png in Resources */ = {isa = PBXBuildFile; fileRef = 165EDA951F404D4100261209 /* shapeOfHumanuman128.png */; };
+		165EDA981F4052E500261209 /* PhoneNumberKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165EDA971F4052E500261209 /* PhoneNumberKit.framework */; };
 		1675FA2E1F35A76800444DF6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1675FA2C1F35A76800444DF6 /* Model.xcdatamodeld */; };
 		1675FA321F35B05800444DF6 /* DebtViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1675FA311F35B05800444DF6 /* DebtViewCell.swift */; };
 		1675FA361F35B87800444DF6 /* DebtInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1675FA351F35B87800444DF6 /* DebtInfoViewController.swift */; };
@@ -25,8 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1663353E1F34B6140098A587 /* shapeOfHumanuman128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shapeOfHumanuman128.png; path = ../../../../../../../Downloads/shapeOfHumanuman128.png; sourceTree = "<group>"; };
-		166335401F34B62B0098A587 /* addPhoto64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addPhoto64.png; path = ../../../../../../../Downloads/addPhoto64.png; sourceTree = "<group>"; };
+		165EDA931F404D3800261209 /* addPhoto64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addPhoto64.png; path = ../../../Downloads/addPhoto64.png; sourceTree = "<group>"; };
+		165EDA951F404D4100261209 /* shapeOfHumanuman128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shapeOfHumanuman128.png; path = ../../../Downloads/shapeOfHumanuman128.png; sourceTree = "<group>"; };
+		165EDA971F4052E500261209 /* PhoneNumberKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneNumberKit.framework; path = Carthage/Build/iOS/PhoneNumberKit.framework; sourceTree = "<group>"; };
 		1675FA2D1F35A76800444DF6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1675FA311F35B05800444DF6 /* DebtViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebtViewCell.swift; sourceTree = "<group>"; };
 		1675FA351F35B87800444DF6 /* DebtInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebtInfoViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				165EDA981F4052E500261209 /* PhoneNumberKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +80,7 @@
 		40ADEEC31EE1A633009FF2C2 = {
 			isa = PBXGroup;
 			children = (
+				165EDA971F4052E500261209 /* PhoneNumberKit.framework */,
 				40ADEECE1EE1A633009FF2C2 /* Debt Back */,
 				40ADEECD1EE1A633009FF2C2 /* Products */,
 				1675FA2C1F35A76800444DF6 /* Model.xcdatamodeld */,
@@ -84,6 +88,7 @@
 				40ADEED61EE1A634009FF2C2 /* Assets.xcassets */,
 				40ADEED81EE1A634009FF2C2 /* LaunchScreen.storyboard */,
 				40ADEEDB1EE1A634009FF2C2 /* Info.plist */,
+				40FFC3DA1EE4667200802E5C /* New debt (deprecated) */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,7 +106,6 @@
 				40ADEED31EE1A634009FF2C2 /* Main.storyboard */,
 				16EE89DA1F39E4AA00BB5A1F /* New Debt */,
 				40ADEEE11EE1A85B009FF2C2 /* Debts List */,
-				40FFC3DA1EE4667200802E5C /* New debt */,
 				16F211E81F359E33001F5FC7 /* Debt info */,
 				40ADEEE41EE1B511009FF2C2 /* Resources */,
 			);
@@ -121,18 +125,19 @@
 		40ADEEE41EE1B511009FF2C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				166335401F34B62B0098A587 /* addPhoto64.png */,
-				1663353E1F34B6140098A587 /* shapeOfHumanuman128.png */,
+				165EDA931F404D3800261209 /* addPhoto64.png */,
+				165EDA951F404D4100261209 /* shapeOfHumanuman128.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		40FFC3DA1EE4667200802E5C /* New debt */ = {
+		40FFC3DA1EE4667200802E5C /* New debt (deprecated) */ = {
 			isa = PBXGroup;
 			children = (
 				40FFC3DC1EE4673300802E5C /* NewDebtController.swift */,
 			);
-			name = "New debt";
+			name = "New debt (deprecated)";
+			path = "Dept Back";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +150,7 @@
 				40ADEEC81EE1A633009FF2C2 /* Sources */,
 				40ADEEC91EE1A633009FF2C2 /* Frameworks */,
 				40ADEECA1EE1A633009FF2C2 /* Resources */,
+				165EDA991F40537300261209 /* PhoneNumber */,
 			);
 			buildRules = (
 			);
@@ -195,15 +201,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1663353F1F34B6140098A587 /* shapeOfHumanuman128.png in Resources */,
-				166335411F34B62B0098A587 /* addPhoto64.png in Resources */,
+				165EDA941F404D3800261209 /* addPhoto64.png in Resources */,
 				40ADEEDA1EE1A634009FF2C2 /* LaunchScreen.storyboard in Resources */,
 				40ADEED71EE1A634009FF2C2 /* Assets.xcassets in Resources */,
 				40ADEED51EE1A634009FF2C2 /* Main.storyboard in Resources */,
+				165EDA961F404D4100261209 /* shapeOfHumanuman128.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		165EDA991F40537300261209 /* PhoneNumber */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/PhoneNumberKit.framework",
+			);
+			name = PhoneNumber;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		40ADEEC81EE1A633009FF2C2 /* Sources */ = {
@@ -342,6 +366,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9K23F99UAT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Dept Back/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -357,6 +385,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9K23F99UAT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Dept Back/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

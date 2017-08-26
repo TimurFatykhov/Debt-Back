@@ -18,7 +18,10 @@ class MainInfoViewCell: UITableViewCell
     @IBOutlet weak var segmentedControlWhom: UISegmentedControl!
     
     var buttonDone : UIBarButtonItem? = nil
+    var superView : NewDebtViewController? = nil
     
+    // delegate for control "done" button enabled
+    var delegateDone : TextFieldsDelegate?
     
     override func awakeFromNib()
     {
@@ -35,28 +38,26 @@ class MainInfoViewCell: UITableViewCell
     }
     
     // MARK : - Input text information
-    func buttonEnabledChanged()
-    {
-        buttonDone!.isEnabled = !(textName.text?.characters.isEmpty)!          ||
-            !(textSername.text?.characters.isEmpty)!       ||
-            !(textDebtsAmount.text?.characters.isEmpty)!
-    }
     
     @IBAction func nameEditingChanged(_ sender: Any)
     {
-        buttonEnabledChanged()
+        delegateDone?.buttonEnabledChanged()
     }
     
     @IBAction func sernameEditingChanged(_ sender: Any)
     {
-        buttonEnabledChanged()
+        delegateDone?.buttonEnabledChanged()
     }
     
     @IBAction func amountEditingChanged(_ sender: Any)
     {
-        buttonEnabledChanged()
+        delegateDone?.buttonEnabledChanged()
     }
 
+    @IBAction func whomChangedValue(_ sender: Any)
+    {
+        delegateDone?.buttonEnabledChanged()
+    }
 }
 
 

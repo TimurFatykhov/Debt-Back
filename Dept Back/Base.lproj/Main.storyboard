@@ -147,14 +147,14 @@
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.7345355308219178" colorSpace="calibratedRGB"/>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KbE-mF-d2H">
-                                <rect key="frame" x="0.0" y="321" width="375" height="274"/>
+                                <rect key="frame" x="0.0" y="360" width="375" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CG6-eC-xBh">
-                                <rect key="frame" x="145" y="620" width="84" height="27"/>
+                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Returned">
@@ -165,23 +165,35 @@
                                     <segue destination="szP-r4-APU" kind="show" identifier="debtInfoToDebts" id="WMg-qy-WwI"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8 983 323-99-72" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BF-7x-W7R">
+                                <rect key="frame" x="0.0" y="313" width="375" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Debt" id="kG0-3U-aKu">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="9CU-Cs-Rfz"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="9CU-Cs-Rfz">
+                            <connections>
+                                <segue destination="WpH-Gs-ZgH" kind="presentation" id="E7m-aG-Iue"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="buttonReturned" destination="CG6-eC-xBh" id="cfe-dJ-vHz"/>
-                        <outlet property="comment" destination="KbE-mF-d2H" id="C2R-Zq-sUo"/>
                         <outlet property="imagePhoto" destination="mhb-xB-2sM" id="rT1-xU-IXS"/>
                         <outlet property="labelAmount" destination="gPW-pl-eat" id="F2O-8L-w8n"/>
                         <outlet property="labelName" destination="ift-mK-quH" id="aUJ-OI-I1e"/>
+                        <outlet property="labelPhoneNumber" destination="7BF-7x-W7R" id="FyG-Ya-97g"/>
+                        <outlet property="textViewNotes" destination="KbE-mF-d2H" id="w9w-cQ-iDP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vk-bT-co6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-266" y="902"/>
+            <point key="canvasLocation" x="-257" y="902"/>
         </scene>
         <!--New debt-->
         <scene sceneID="Kdt-ZS-bM3">
@@ -245,11 +257,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4z-lT-5h1">
-                                <rect key="frame" x="304" y="205" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -290,7 +297,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sos-gP-vlA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="143"/>
+            <point key="canvasLocation" x="1809" y="553"/>
         </scene>
         <!--New debt-->
         <scene sceneID="Gxu-ud-etg">
@@ -301,7 +308,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainInfoCell" rowHeight="166" id="noK-Om-nea" customClass="MainInfoViewCell" customModule="Debt_Back" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainInfoCell" rowHeight="166" id="noK-Om-nea" customClass="MainInfoViewCell" customModule="Debt_Back" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="166"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="noK-Om-nea" id="olY-r4-gZQ">
@@ -313,6 +320,8 @@
                                             <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="nBH-ez-26B" secondAttribute="height" multiplier="1:1" id="Lzb-3w-2e5"/>
+                                                <constraint firstAttribute="height" constant="64" id="p9Q-Zd-2vo"/>
+                                                <constraint firstAttribute="width" constant="64" id="uHN-1A-z7C"/>
                                             </constraints>
                                         </imageView>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sername" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hMN-LT-qKJ">
@@ -339,6 +348,10 @@
                                                 <segment title="To me"/>
                                                 <segment title="I took"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="whomChanged:" destination="noK-Om-nea" eventType="editingChanged" id="f6k-AJ-rmo"/>
+                                                <action selector="whomChangedValue:" destination="noK-Om-nea" eventType="valueChanged" id="oTJ-yw-94M"/>
+                                            </connections>
                                         </segmentedControl>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rFT-15-XOY">
                                             <rect key="frame" x="84" y="8" width="275" height="30"/>
@@ -377,65 +390,75 @@
                                     <outlet property="textSername" destination="hMN-LT-qKJ" id="Asb-Gy-Y09"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="phoneNumberCell" rowHeight="74" id="u3x-SQ-ISg" customClass="PhoneNumberViewCell" customModule="Debt_Back" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="194" width="375" height="74"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="phoneNumberCell" rowHeight="69" id="u3x-SQ-ISg" customClass="PhoneNumberViewCell" customModule="Debt_Back" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="194" width="375" height="69"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u3x-SQ-ISg" id="cJJ-5d-TRG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="68.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k7y-LL-hkH">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k7y-LL-hkH">
                                             <rect key="frame" x="8" y="35" width="359" height="30"/>
-                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="uhA-1e-PbE"/>
+                                                <constraint firstAttribute="height" constant="30" id="GTy-BY-6Kp"/>
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                            <connections>
+                                                <action selector="editingChanged:" destination="u3x-SQ-ISg" eventType="editingChanged" id="PCc-BS-VpA"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="k7y-LL-hkH" firstAttribute="top" secondItem="cJJ-5d-TRG" secondAttribute="topMargin" constant="27" id="DSg-Ba-I6J"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="k7y-LL-hkH" secondAttribute="bottom" constant="0.5" id="ZE3-Kr-luC"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="k7y-LL-hkH" secondAttribute="leading" id="dor-nT-4ET"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="k7y-LL-hkH" secondAttribute="trailing" id="iAc-CN-TsI"/>
+                                        <constraint firstItem="k7y-LL-hkH" firstAttribute="leading" secondItem="cJJ-5d-TRG" secondAttribute="leading" constant="8" id="lKU-W1-YmA"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="k7y-LL-hkH" secondAttribute="bottom" constant="-4.5" id="ldo-p5-Jp7"/>
+                                        <constraint firstItem="k7y-LL-hkH" firstAttribute="top" secondItem="cJJ-5d-TRG" secondAttribute="top" constant="35" id="mg6-oa-6vz"/>
+                                        <constraint firstAttribute="trailing" secondItem="k7y-LL-hkH" secondAttribute="trailing" constant="8" id="urF-vj-ihd"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
-                                    <outlet property="textFieldPhone" destination="k7y-LL-hkH" id="AHD-Zj-eXk"/>
+                                    <outlet property="textFieldPhone" destination="k7y-LL-hkH" id="g2c-bS-2bJ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" rowHeight="140" id="Tzb-Nd-D8W" customClass="NoteViewCell" customModule="Debt_Back" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="268" width="375" height="140"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" rowHeight="70" id="Tzb-Nd-D8W" customClass="NoteViewCell" customModule="Debt_Back" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="263" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tzb-Nd-D8W" id="haj-QN-qH0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVx-FI-uEl">
-                                            <rect key="frame" x="8" y="8" width="359" height="112"/>
-                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.7345355308" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="112" id="y1a-y0-zpC"/>
-                                            </constraints>
-                                            <string key="text">1111111111111111111111111111111111111111111111111111112222222222222222222222222222222222222222223333333333333333333333333333333333333333444444444444444444444444444444444444444555555555555555555555555555555555555555556666666666666666666666666666666666666667777777777777777777777777777777777777777777</string>
-                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
-                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZs-di-0xT">
+                                            <rect key="frame" x="3" y="35" width="369" height="32"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" calendarEvent="YES"/>
                                         </textView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlE-2B-TRG">
+                                            <rect key="frame" x="8" y="41" width="50" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="kYb-Z3-J4I"/>
+                                                <constraint firstAttribute="width" constant="50" id="u40-A5-JUz"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="topMargin" secondItem="pVx-FI-uEl" secondAttribute="top" id="2rH-ZA-96E"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="pVx-FI-uEl" secondAttribute="trailing" id="Goq-si-sEe"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="pVx-FI-uEl" secondAttribute="leading" id="NLO-4K-bCE"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="pVx-FI-uEl" secondAttribute="bottom" constant="11.5" id="juD-Yy-GCE"/>
+                                        <constraint firstItem="NZs-di-0xT" firstAttribute="top" secondItem="haj-QN-qH0" secondAttribute="top" constant="35" id="8xO-UR-4bO"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="NZs-di-0xT" secondAttribute="bottom" constant="-5.5" id="8yU-DI-gAA"/>
+                                        <constraint firstItem="NZs-di-0xT" firstAttribute="leading" secondItem="haj-QN-qH0" secondAttribute="leading" constant="3" id="Bru-cM-XkS"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="vlE-2B-TRG" secondAttribute="leading" id="KbP-X4-fhC"/>
+                                        <constraint firstItem="vlE-2B-TRG" firstAttribute="top" secondItem="haj-QN-qH0" secondAttribute="topMargin" constant="33" id="LQL-yH-8uf"/>
+                                        <constraint firstAttribute="trailing" secondItem="NZs-di-0xT" secondAttribute="trailing" constant="3" id="css-fx-rCK"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <inset key="separatorInset" minX="900" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
-                                    <outlet property="textViewNotes" destination="pVx-FI-uEl" id="Dfr-oF-5oN"/>
+                                    <outlet property="labelPlaceholder" destination="vlE-2B-TRG" id="xHZ-jR-jc0"/>
+                                    <outlet property="textViewNote" destination="NZs-di-0xT" id="9vk-v0-x6Y"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -458,12 +481,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="buttonDone" destination="ckQ-Vn-bMt" id="3Q8-uV-QVw"/>
+                        <outlet property="navigationBar" destination="5Oj-gc-g5Q" id="6KH-6m-r0R"/>
                         <outlet property="newDebtView" destination="er8-FP-Ikh" id="Ctg-Yv-muj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8R-mU-7qD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2636" y="129.98500749625188"/>
+            <point key="canvasLocation" x="2913" y="553"/>
         </scene>
     </scenes>
     <resources>
@@ -471,6 +495,7 @@
         <image name="shapeOfHumanuman128.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Bhu-CN-bhe"/>
+        <segue reference="WMg-qy-WwI"/>
+        <segue reference="E7m-aG-Iue"/>
     </inferredMetricsTieBreakers>
 </document>
