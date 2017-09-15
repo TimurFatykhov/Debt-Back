@@ -13,6 +13,7 @@ class DebtViewCell: UITableViewCell {
     @IBOutlet weak var imagePhoto: UIImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelAmount: UILabel!
+    @IBOutlet weak var labelInitials: UILabel!
     var index : Int? = nil
     
     override func awakeFromNib() {

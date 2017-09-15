@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		165EDA941F404D3800261209 /* addPhoto64.png in Resources */ = {isa = PBXBuildFile; fileRef = 165EDA931F404D3800261209 /* addPhoto64.png */; };
-		165EDA961F404D4100261209 /* shapeOfHumanuman128.png in Resources */ = {isa = PBXBuildFile; fileRef = 165EDA951F404D4100261209 /* shapeOfHumanuman128.png */; };
 		165EDA981F4052E500261209 /* PhoneNumberKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165EDA971F4052E500261209 /* PhoneNumberKit.framework */; };
 		1675FA2E1F35A76800444DF6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1675FA2C1F35A76800444DF6 /* Model.xcdatamodeld */; };
 		1675FA321F35B05800444DF6 /* DebtViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1675FA311F35B05800444DF6 /* DebtViewCell.swift */; };
@@ -27,7 +26,6 @@
 
 /* Begin PBXFileReference section */
 		165EDA931F404D3800261209 /* addPhoto64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addPhoto64.png; path = ../../../Downloads/addPhoto64.png; sourceTree = "<group>"; };
-		165EDA951F404D4100261209 /* shapeOfHumanuman128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shapeOfHumanuman128.png; path = ../../../Downloads/shapeOfHumanuman128.png; sourceTree = "<group>"; };
 		165EDA971F4052E500261209 /* PhoneNumberKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneNumberKit.framework; path = Carthage/Build/iOS/PhoneNumberKit.framework; sourceTree = "<group>"; };
 		1675FA2D1F35A76800444DF6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1675FA311F35B05800444DF6 /* DebtViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebtViewCell.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				165EDA931F404D3800261209 /* addPhoto64.png */,
-				165EDA951F404D4100261209 /* shapeOfHumanuman128.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -205,7 +202,6 @@
 				40ADEEDA1EE1A634009FF2C2 /* LaunchScreen.storyboard in Resources */,
 				40ADEED71EE1A634009FF2C2 /* Assets.xcassets in Resources */,
 				40ADEED51EE1A634009FF2C2 /* Main.storyboard in Resources */,
-				165EDA961F404D4100261209 /* shapeOfHumanuman128.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

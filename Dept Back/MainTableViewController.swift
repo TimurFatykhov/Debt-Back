@@ -96,11 +96,12 @@ class MainTableViewController: UITableViewController {
             // change debt amount color
             if (!(toMe as! Bool))
             {
-                cell.labelAmount.textColor = UIColor.red
+                cell.labelAmount.textColor = UIColor.gray
                 cell.labelAmount.text! = "-"
             }
             else
             {
+                cell.labelAmount.textColor = UIColor.gray
                 cell.labelAmount.text! = ""
             }
         }
@@ -114,10 +115,21 @@ class MainTableViewController: UITableViewController {
         {
             let image = UIImage(data: photo as! Data, scale: 1.0)
             cell.imagePhoto.image = image
+            cell.labelInitials.isHidden = true
         }
         else
         {
-            cell.imagePhoto.image = #imageLiteral(resourceName: "shapeOfHumanuman128.png")
+            if let initials = debt.value(forKey: "initials")
+            {
+                cell.imagePhoto.backgroundColor = UIColor.gray
+                cell.labelInitials.text = initials as? String
+            }
+            else
+            {
+                //cell.imagePhoto.image = #imageLiteral(resourceName: "shapeOfHumanuman128.png")
+                cell.labelInitials.isHidden = true
+            }
+            
         }
         
         cell.index = indexPath.row

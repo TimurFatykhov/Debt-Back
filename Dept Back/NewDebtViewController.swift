@@ -71,6 +71,8 @@ class NewDebtViewController: UITableViewController,UIImagePickerControllerDelega
     var defaultSername: String = ""
     var defaultWhomIndex: Int = 0
     
+    // true symbols for initials
+    var initialsSymbolSet = CharacterSet.uppercaseLetters.union(CharacterSet.lowercaseLetters)
     
     // MARK: - methods
     
@@ -284,6 +286,7 @@ class NewDebtViewController: UITableViewController,UIImagePickerControllerDelega
         managedDebt!.setValue(mainInfoCell!.textDebtsAmount.text, forKey: "amount")
         managedDebt!.setValue(phoneNumberCell!.textFieldPhone.text, forKey: "phoneNumber")
         managedDebt!.setValue(notesCell!.textViewNote.text, forKey: "notes")
+        managedDebt!.setValue(makeInitials(name: mainInfoCell!.textName.text, sername: mainInfoCell!.textSername.text), forKey: "initials")
         
         if (imageSelected)
         {
@@ -311,6 +314,35 @@ class NewDebtViewController: UITableViewController,UIImagePickerControllerDelega
         }
         
         dismiss(animated: true)
+    }
+    
+    func makeInitials(name: String?, sername: String?)->String?
+    {
+       let nameLetter = name?.characters.first
+       let sernameLetter = sername?.characters.first
+        
+        
+        
+       var initials : String = ""
+        
+        if nameLetter != nil
+        {
+            if String(describing: nameLetter).rangeOfCharacter(from: initialsSymbolSet) != nil
+            {
+                initials += String(nameLetter!)
+            }
+        }
+        if sernameLetter != nil
+        {
+            if String(describing: sernameLetter).rangeOfCharacter(from: initialsSymbolSet) != nil
+            {
+                initials += String(sernameLetter!)
+            }
+        }
+        
+        if initials == "" {return nil}
+        
+        return initials.localizedUppercase
     }
 }
 

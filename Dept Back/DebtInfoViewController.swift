@@ -66,7 +66,7 @@ class DebtInfoViewController: UIViewController {
         }
         else
         {
-            imagePhoto.image = #imageLiteral(resourceName: "shapeOfHumanuman128.png")
+            //imagePhoto.image = #imageLiteral(resourceName: "shapeOfHumanuman128.png")
             
             imagePhoto.contentMode = .scaleAspectFill
             
